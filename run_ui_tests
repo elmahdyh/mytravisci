@@ -1,1 +1,1 @@
-echo Unit Test: Environment variable: $1
+echo UI Test: Environment variable: $1
