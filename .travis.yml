@@ -13,11 +13,11 @@ conditions: v1
 
 stages:
   - name: Unit Tests
-    if: type != cron AND branch != integration
+    #if: type != cron AND branch != integration
   - name: Ui Tests
-    if: type = cron OR branch = integration OR commit_message =~ run_tests
+    #if: type = cron OR branch = integration OR commit_message =~ run_tests
   - name: Deploy
-    if: branch = master AND type != cron AND type = push
+    #if: branch = master AND type != cron AND type = push
 
 jobs:
   include:
