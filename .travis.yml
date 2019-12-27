@@ -1,0 +1,35 @@
+install:
+  - echo install depedencies ..... # install whatever is necessary to run the UI tests
+
+script: ./run_ui_tests $TEST_PART
+
+env:
+  matrix:
+    - TEST_PART=1
+    - TEST_PART=2
+
+# the following line is needed to enable the TravisCI build conditions
+conditions: v1
+
+stages:
+  - name: Unit Tests
+    if: type != cron AND branch != integration
+  - name: Ui Tests
+    if: type = cron OR branch = integration OR commit_message =~ run_tests
+  - name: Deploy
+    if: branch = master AND type != cron AND type = push
+
+jobs:
+  include:
+    - stage: Unit Tests
+      env: TARGET=target_environment
+      install: ./install_unit_tests_dependencies
+      script: ./run_unit_tests
+      after_success: ./upload_coverage
+
+
+    - stage: Deploy
+      name: Deploy to staging
+      env: ENVIRONMENT=staging
+      install: ./install_deployment_dependencies
+      script: ./deploy
