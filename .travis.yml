@@ -25,6 +25,10 @@ jobs:
       install: ./install_unit_tests_dependencies
       script: ./run_unit_tests
       after_success: ./upload_coverage
+      
+    - stage: Test
+      env: TARGET=target_environment
+      script: ./run_unit_tests
 
 
     - name: Deploy to staging
