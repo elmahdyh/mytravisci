@@ -28,12 +28,10 @@ jobs:
       script: ./run_unit_tests
       after_success: ./upload_coverage
       
-
     - name: Deploy to staging
       env: ENVIRONMENT=staging
       install: ./install_deployment_dependencies
       script: ./deploy
 
-      
     - name: Test2
       script: ./run_unit_tests
