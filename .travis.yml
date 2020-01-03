@@ -27,7 +27,7 @@ jobs:
       after_success: ./upload_coverage
       
     - stage: Test
-      env: TARGET=target_environment
+      env: TARGET=target_environments
       script: ./run_unit_tests
 
 
