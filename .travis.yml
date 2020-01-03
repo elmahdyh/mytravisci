@@ -21,15 +21,13 @@ stages:
 
 jobs:
   include:
-    - stage: Unit Tests
-      env: TARGET=target_environment
+    - env: TARGET=target_environment
       install: ./install_unit_tests_dependencies
       script: ./run_unit_tests
       after_success: ./upload_coverage
 
 
-    - stage: Deploy
-      name: Deploy to staging
+    - name: Deploy to staging
       env: ENVIRONMENT=staging
       install: ./install_deployment_dependencies
       script: ./deploy
