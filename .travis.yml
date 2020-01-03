@@ -26,7 +26,7 @@ jobs:
       script: ./run_unit_tests
       after_success: ./upload_coverage
       
-    - stage: Test
+    - stage: Test2
       script: ./run_unit_tests
 
     - name: Deploy to staging
