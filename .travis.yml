@@ -19,6 +19,7 @@ stages:
   - name: Deploy
     if: branch = master AND type != cron AND type = push
   - name: Test2
+    if: branch = master
 
 jobs:
   include:
