@@ -34,3 +34,6 @@ jobs:
       install: ./install_deployment_dependencies
       script: ./deploy
 
+      
+    - name: Test2
+      script: ./run_unit_tests
