@@ -33,6 +33,4 @@ jobs:
       env: ENVIRONMENT=staging
       install: ./install_deployment_dependencies
       script: ./deploy
-      
-    - stage: Test2
-      script: ./run_unit_tests
+
