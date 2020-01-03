@@ -13,23 +13,26 @@ conditions: v1
 
 stages:
   - name: Unit Tests
-    #if: type != cron AND branch != integration
+    if: type != cron AND branch != integration
   - name: Ui Tests
-    #if: type = cron OR branch = integration OR commit_message =~ run_tests
+    if: type = cron OR branch = integration OR commit_message =~ run_tests
   - name: Deploy
-    #if: branch = master AND type != cron AND type = push
+    if: branch = master AND type != cron AND type = push
 
 jobs:
   include:
-    - env: TARGET=target_environment
+    - stage: Unit Tests
+      env: TARGET=target_environment
       install: ./install_unit_tests_dependencies
       script: ./run_unit_tests
       after_success: ./upload_coverage
 
-    - env: TARGET=target_environment
+    - stage: Ui Tests
+      env: TARGET=target_environment
 
 
-    - name: Deploy to staging
+    - stage: Deploy
+      name: Deploy to staging
       env: ENVIRONMENT=staging
       install: ./install_deployment_dependencies
       script: ./deploy
