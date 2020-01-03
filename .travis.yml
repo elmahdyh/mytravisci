@@ -18,6 +18,7 @@ stages:
     if: type = cron OR branch = integration OR commit_message =~ run_tests
   - name: Deploy
     if: branch = master AND type != cron AND type = push
+  - name: Test2
 
 jobs:
   include:
